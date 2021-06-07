@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.auth.LoginActivity">
+    >
 
-    <EditText
-        android:id="@+id/edt_login_email"
+    <data>
+        
+        <variable
+            name="viewmodel"
+            type="com.example.kotlinmvvmproject.ui.auth.AuthViewModel" />
+        
+    </data>
+    
+    <RelativeLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.LoginActivity">
 
-    <EditText
-        android:id="@+id/edt_login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginRight="20dp"/>
+        <EditText
+            android:text="@={viewmodel.email}"
+            android:id="@+id/edt_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="20dp"/>
 
-    <TextView
-        android:id="@+id/txt_login_forgetPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="forget password?"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/edt_login_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        <EditText
+            android:text="@={viewmodel.password}"
+            android:id="@+id/edt_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="270dp"
+            android:layout_marginRight="20dp"/>
 
-    <Button
-        android:layout_below="@id/txt_login_forgetPassword"
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="login"/>
+        <TextView
+            android:id="@+id/txt_login_forgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="forget password?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/edt_login_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
 
-</RelativeLayout>
+        <Button
+            android:onClick="@{viewmodel::onLoginButtonClicked}"
+            android:layout_below="@id/txt_login_forgetPassword"
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="login"/>
+
+    </RelativeLayout>
+    
+</layout>
